@@ -20,8 +20,7 @@ RUN pip install --no-cache-dir .
 # Set default environment variables
 ENV BASE_URL=http://localhost:8000
 
-EXPOSE 8000
+EXPOSE 5000
 
 # Run the server
-ENTRYPOINT ["npx", "-y", "supergateway", "--stdio", "mcp-server-hubspot", "--baseUrl"]
-CMD ${BASE_URL}
+ENTRYPOINT ["npx", "-y", "supergateway", "--stdio", "mcp-server-hubspot", " --port", "5000"]
