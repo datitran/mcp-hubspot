@@ -17,9 +17,6 @@ COPY . /app
 # Install the package
 RUN pip install --no-cache-dir .
 
-# Set default environment variables
-ENV BASE_URL=http://localhost:8000
-
 EXPOSE 5000
 
 # Run the server
