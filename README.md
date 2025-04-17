@@ -58,7 +58,7 @@ The server offers several tools for managing HubSpot objects:
 
 #### Contact Management Tools
 
-* `hubspot_create_contact`
+- `hubspot_create_contact`
   - Create a new contact in HubSpot (checks for duplicates before creation)
   - Input:
     - `firstname` (string): Contact's first name
@@ -74,7 +74,7 @@ The server offers several tools for managing HubSpot objects:
 
 #### Company Management Tools
 
-* `hubspot_create_company`
+- `hubspot_create_company`
   - Create a new company in HubSpot (checks for duplicates before creation)
   - Input:
     - `name` (string): Company name
@@ -93,7 +93,7 @@ The server offers several tools for managing HubSpot objects:
 
 #### Engagement Tools
 
-* `hubspot_get_recent_engagements`
+- `hubspot_get_recent_engagements`
   - Get recent engagement activities across all contacts and companies
   - Input:
     - `days` (integer, optional): Number of days to look back (default: 7)
@@ -277,6 +277,12 @@ To test locally:
 ```
 docker build --build-arg HUBSPOT_ACCESS_TOKEN=your-token-here -t mcp-hubspot .
 docker run -p 8000:8000 mcp-hubspot
+```
+
+To connect via claude:
+
+```
+npx -y supergateway --sse "https://dat:test1234@mcp-hubspot.onrender.com"
 ```
 
 ## License

@@ -28,7 +28,5 @@ RUN htpasswd -bc /etc/nginx/.htpasswd dat test1234
 # Expose ports
 EXPOSE 8000
 
-ENV HUBSPOT_ACCESS_TOKEN=pat-na1-4899999999999999999999999999999999999999999999999999999999999999
-
 # Start nginx and the HubSpot server
 CMD nginx && npx -y supergateway --stdio "mcp-server-hubspot" --port 5000
