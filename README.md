@@ -282,8 +282,45 @@ docker run -p 8000:8000 mcp-hubspot
 To connect via claude:
 
 ```
-npx -y supergateway --sse "https://dat:test1234@mcp-hubspot.onrender.com"
+npx -y supergateway --sse "https://mcp-hubspot.onrender.com"
 ```
+
+docker build -t hubspot-sse .
+docker run -p 8000:8000 hubspot-sse
+
+## Securing API
+
+We use NGINX and simple basic auth to secure it for now.
+The username and password can be changed in the Dockerfile.
+
+For Claude we need to pass a header
+
+```
+{
+  "mcpServers": {
+    "mcp-hubspot": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "supergateway",
+        "--sse",
+        "https://mcp-hubspot.onrender.com/sse",
+        "--header",
+        "Authorization: Basic ZGF0OnRlc3QxMjM0"
+      ]
+    }
+  }
+}
+```
+
+The authorization header changed when you change the username/password.
+You get the header when doing this here:
+
+```
+curl -v -u dat:test1234 https://mcp-hubspot.onrender.com/sse
+```
+
+- For Cursor there is a known but with the header and it doesn't work for now
 
 ## License
 
