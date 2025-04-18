@@ -25,8 +25,14 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Create password file (replace 'password' with your desired password)
 RUN htpasswd -bc /etc/nginx/.htpasswd dat test1234
 
+# Create log directories
+RUN mkdir -p /var/log/nginx && \
+    touch /var/log/nginx/error.log && \
+    touch /var/log/nginx/access.log && \
+    chown -R www-data:www-data /var/log/nginx
+
 # Expose ports
-EXPOSE 8000
+EXPOSE 8000 5000
 
 # Start nginx and the HubSpot server
 CMD nginx && npx -y supergateway --stdio "mcp-server-hubspot" --port 5000
